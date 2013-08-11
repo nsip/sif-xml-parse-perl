@@ -4,7 +4,7 @@ use XML::Simple;
 
 =head1 NAME
 
-SIFAU::XML::Parse - Parse all incoming XML matching SIF AU 1.3
+SIF::XML::Parse - Parse all incoming XML matching SIF AU 1.3
 
 =head1 SYNOPSIS
 
@@ -205,12 +205,12 @@ sub parse {
 		my $newsub = $collections->{$sub};
 		$out = [
 			map {
-				SIFAU::XML::Parse->$newsub($_, $xml);
+				SIF::XML::Parse->$newsub($_, $xml);
 			} @{$raw->{$sub}{$newsub}}
 		];
 	}
 	else {
-		$out = SIFAU::XML::Parse->$sub($raw->{$sub}, $xml);
+		$out = SIF::XML::Parse->$sub($raw->{$sub}, $xml);
 	}
 
 	return {
