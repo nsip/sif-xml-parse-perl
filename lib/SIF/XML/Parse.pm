@@ -109,11 +109,15 @@ sub RoomInfo {
 sub StaffPersonal {
 	my ($class, $raw) = @_;
 	$raw = flat($raw);
+	if ($raw->{PersonInfo}{Name}{FullName}{content} =~ /(.+)\s(.+)$/) {
+		$raw->{PersonInfo}{Name}{GivenName} = { content => $1 };
+		$raw->{PersonInfo}{Name}{FamilyName} = { content => $2 };
+	}
 	return {
 		RefId => $raw->{RefId},
-		RoomNumber => $raw->{RoomNumber}{content},
-		Description => $raw->{Description}{content},
-		Capacity => $raw->{Capacity}{content},
+		LocalId => $raw->{LocalId}{content},
+		GivenName => $raw->{PersonInfo}{Name}{GivenName}{content},
+		FamilyName => $raw->{PersonInfo}{Name}{FamilyName}{content},
 	};
 }
 
@@ -137,7 +141,7 @@ sub TimeTableSubject {
 	return {
 		RefId => $raw->{RefId},
 		SubjectLocalId => $raw->{SubjectLocalId}{content},
-		AcademicYear => $raw->{AcademicYear}{content},
+		AcademicYear => $raw->{AcademicYear}{Code}{content},
 		Faculty => $raw->{Faculty}{content},
 		SubjectShortName => $raw->{SubjectShortName}{content},
 		SubjectLongName => $raw->{SubjectLongName}{content},
