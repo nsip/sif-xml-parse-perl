@@ -158,7 +158,7 @@ sub TimeTableCell {
 		TimeTable_RefId => $raw->{TimeTableRefId}{content},
 		TimeTableSubject_RefId => $raw->{TimeTableSubjectRefId}{content},
 		TeachingGroup_RefId => $raw->{TeachingGroupRefId}{content},
-		RoomInfo_RefId => $raw->{RoomInfo}{content},
+		RoomInfo_RefId => $raw->{RoomInfoRefId}{content},
 		CellType => $raw->{CellType}{content},
 		PeriodId => $raw->{PeriodId}{content},
 		DayId => $raw->{DayId}{content},
